@@ -13,7 +13,7 @@ output "public_ip" {
   value       = var.public_ip ? azurerm_public_ip.pub_ip[0] : null
 }
 
-output "private_ip' {
+output "private_ip" {
   description = "The private IP of this VM"
   value = azurerm_network_interface.nic.private_ip_address
 }
