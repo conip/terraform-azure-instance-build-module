@@ -22,9 +22,9 @@ variable "ssh_key" {
   type = string
 }
 
-variable "cloud_init_data" {
-  type = string
-}
+#variable "cloud_init_data" {
+#  type = string
+#}
 
 variable "instance_size" {
   type    = string
