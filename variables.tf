@@ -10,9 +10,9 @@ variable "rg" {
   type = string
 }
 
-variable "vnet" {
-  type = string
-}
+#variable "vnet" {
+#  type = string
+#}
 
 variable "subnet_id" {
   type = string
