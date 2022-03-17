@@ -40,3 +40,8 @@ variable "dynamic_or_static_ip" {
   type    = string
   default = "Dynamic"
 }
+
+variable "private_ip_address" {
+  type = string
+  default = "1.1.1.1"
+}
