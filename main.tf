@@ -103,8 +103,7 @@ resource "azurerm_linux_virtual_machine" "instance" {
   os_disk {
     name              = "${var.name}-disk"
     caching           = "ReadWrite"
-    create_option     = "FromImage"
-    managed_disk_type = "Standard_LRS"
+    storage_account_type = "Standard_LRS"
   }
 
   source_image_reference {
