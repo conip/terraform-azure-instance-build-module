@@ -35,3 +35,8 @@ variable "public_ip" {
   type    = bool
   default = false
 }
+
+variable "dynamic_or_static_ip" {
+  type    = string
+  default = "Dynamic"
+}
