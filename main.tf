@@ -13,7 +13,7 @@ resource "azurerm_network_interface" "nic" {
   ip_configuration {
     name                          = "${var.name}-nic"
     subnet_id                     = var.subnet_id
-    private_ip_address_allocation = "Dynamic"
+    private_ip_address_allocation = var.dynamic_or_static_ip
     public_ip_address_id          = var.public_ip ? azurerm_public_ip.pub_ip[0].id : null #azurerm_public_ip.pub_ip.id
   }
 }
