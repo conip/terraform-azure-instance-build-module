@@ -86,32 +86,38 @@ resource "azurerm_network_interface_security_group_association" "nsg" {
 }
 
 #------------------
-resource "azurerm_linux_virtual_machine" "instance" {
+resource "azurerm_virtual_machine" "instance" {
   name                  = "${var.name}-srv"
   location              = var.region
   resource_group_name   = var.rg
-  size                = var.instance_size
-  admin_username      = "ubuntu"
   network_interface_ids = [azurerm_network_interface.nic.id]
+  vm_size               = var.instance_size
 
-  admin_ssh_key {
-    username   = "ubuntu"
-      public_key = var.ssh_key
-    
-  }
+  delete_os_disk_on_termination    = true
+  delete_data_disks_on_termination = true
 
-  os_disk {
-    name              = "${var.name}-disk"
-    caching           = "ReadWrite"
-    storage_account_type = "Standard_LRS"
-  }
-
-  source_image_reference {
+  storage_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
+    sku       = "20_04-lts"
     version   = "latest"
   }
+  storage_os_disk {
+    name              = "${var.name}-disk"
+    caching           = "ReadWrite"
+    create_option     = "FromImage"
+    managed_disk_type = "Standard_LRS"
+  }
+  os_profile {
+    computer_name  = var.name
+    admin_username = "ubuntu"
+    #custom_data    = var.cloud_init_data
+  }
+  os_profile_linux_config {
+    disable_password_authentication = true
+    ssh_keys {
+      path     = "/home/ubuntu/.ssh/authorized_keys"
+      key_data = var.ssh_key
+    }
+  }
 }
-
-#------------------
