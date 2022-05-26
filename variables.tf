@@ -47,6 +47,6 @@ variable "private_ip_address" {
 }
 
 variable "tags" {
-  type = list
+  type = map
   default = null
 }
