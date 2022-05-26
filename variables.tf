@@ -45,3 +45,8 @@ variable "private_ip_address" {
   type = string
   default = "1.1.1.1"
 }
+
+variable "tags" {
+  type = list
+  default = null
+}
