@@ -22,6 +22,16 @@ variable "ssh_key" {
   type = string
 }
 
+variable "enable_password_auth" {
+  type = bool
+  default = false
+}
+
+variable "az_linux_password" {
+  type = string
+  default = "secretpassword"
+}
+
 #variable "cloud_init_data" {
 #  type = string
 #}

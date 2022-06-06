@@ -112,10 +112,10 @@ resource "azurerm_virtual_machine" "instance" {
   os_profile {
     computer_name  = var.name
     admin_username = "ubuntu"
-    #custom_data    = var.cloud_init_data
+    admin_password = var.az_linux_password
   }
   os_profile_linux_config {
-    disable_password_authentication = true
+    disable_password_authentication = var.enable_password_auth ? false : true
     ssh_keys {
       path     = "/home/ubuntu/.ssh/authorized_keys"
       key_data = var.ssh_key
